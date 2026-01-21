@@ -38,7 +38,7 @@ class MessageInfolist
                             ->badge(),
                         TextEntry::make('created_at')
                             ->label('Received')
-                            ->dateTime(),
+                            ->dateTime('l M d, Y - h:i A'),
                     ]),
             ]);
     }

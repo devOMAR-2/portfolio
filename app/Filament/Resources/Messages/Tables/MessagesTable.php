@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Messages\Tables;
 
 use App\Enums\MessageStatus;
 use App\Models\Message;
+use CodeWithKyrian\FilamentDateRange\Tables\Filters\DateRangeFilter;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
@@ -25,6 +26,7 @@ class MessagesTable
         return $table
             ->columns([
                 TextColumn::make('status')
+                    ->sortable()
                     ->badge(),
                 TextColumn::make('name')
                     ->searchable()
@@ -43,11 +45,15 @@ class MessagesTable
                     ->icon(Heroicon::OutlinedPhone),
                 TextColumn::make('created_at')
                     ->label('Received')
-                    ->dateTime()
+                    ->dateTime('l M d, Y - h:i A')
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
+                DateRangeFilter::make('created_at')
+                    ->firstDayOfWeek(7)
+                    ->dualCalendar(false)
+                    ->label('Received within'),
                 SelectFilter::make('status')
                     ->options(MessageStatus::class)
                     ->multiple(),
@@ -120,6 +126,18 @@ class MessagesTable
                             $records->each(fn (Message $record) => $record->update(['status' => MessageStatus::Contacted]));
                             Notification::make()
                                 ->title('Messages marked as contacted')
+                                ->success()
+                                ->send();
+                        })
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('resetSelectedToUnread')
+                        ->label('Reset to Unread')
+                        ->icon(Heroicon::OutlinedArrowUturnLeft)
+                        ->color('gray')
+                        ->action(function (Collection $records): void {
+                            $records->each(fn (Message $record) => $record->update(['status' => MessageStatus::Unread]));
+                            Notification::make()
+                                ->title('Messages reset to unread')
                                 ->success()
                                 ->send();
                         })
