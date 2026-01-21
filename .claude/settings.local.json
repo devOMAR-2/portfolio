@@ -21,7 +21,14 @@
       "Bash(\"C:\\\\Program Files\\\\Herd\\\\resources\\\\bin\\\\php84\\\\php.exe\" artisan test --filter=ProjectResourceTest --compact)",
       "Bash(herd php artisan test:*)",
       "Bash(composer dump-autoload:*)",
-      "Bash(php artisan:*)"
+      "Bash(php artisan:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_fill_form",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_close",
+      "mcp__laravel-boost__database-schema",
+      "Bash(vendor/bin/pint:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

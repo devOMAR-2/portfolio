@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use Filament\Auth\MultiFactor\App\AppAuthentication;
+use Filament\Auth\MultiFactor\Email\EmailAuthentication;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -18,7 +19,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Openplain\FilamentShadcnTheme\Color;
-use Filament\Auth\MultiFactor\Email\EmailAuthentication;
 
 class AdminPanelProvider extends PanelProvider
 {
