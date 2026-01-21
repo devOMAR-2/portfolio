@@ -18,6 +18,14 @@ class Message extends Model
         'phone',
         'message',
         'status',
+        'ip_address',
+        'user_agent',
+        'browser',
+        'platform',
+        'device',
+        'country',
+        'city',
+        'referrer_url',
     ];
 
     /**

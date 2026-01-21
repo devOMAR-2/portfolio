@@ -40,6 +40,36 @@ class MessageInfolist
                             ->label('Received')
                             ->dateTime('l M d, Y - h:i A'),
                     ]),
+                Section::make('User Information')
+                    ->columns(2)
+                    ->collapsible()
+                    ->schema([
+                        TextEntry::make('ip_address')
+                            ->label('IP Address')
+                            ->placeholder('N/A')
+                            ->copyable(),
+                        TextEntry::make('browser')
+                            ->placeholder('N/A'),
+                        TextEntry::make('platform')
+                            ->label('Operating System')
+                            ->placeholder('N/A'),
+                        TextEntry::make('device')
+                            ->placeholder('N/A'),
+                        TextEntry::make('country')
+                            ->placeholder('N/A'),
+                        TextEntry::make('city')
+                            ->placeholder('N/A'),
+                        TextEntry::make('referrer_url')
+                            ->label('Referrer')
+                            ->placeholder('Direct visit')
+                            ->columnSpanFull()
+                            ->url(fn ($state) => $state, shouldOpenInNewTab: true),
+                        TextEntry::make('user_agent')
+                            ->label('User Agent')
+                            ->placeholder('N/A')
+                            ->columnSpanFull()
+                            ->copyable(),
+                    ]),
             ]);
     }
 }

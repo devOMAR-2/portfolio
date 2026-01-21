@@ -17,9 +17,23 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence,
-            'description' => fake()->paragraph,
-            'is_active' => fake()->boolean,
+            'title' => fake()->sentence(rand(3, 6)),
+            'description' => fake()->paragraphs(rand(2, 5), true),
+            'is_active' => fake()->boolean(70),
         ];
+    }
+
+    public function active(): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'is_active' => true,
+        ]);
+    }
+
+    public function inactive(): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'is_active' => false,
+        ]);
     }
 }

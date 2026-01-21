@@ -57,6 +57,11 @@ class ViewMessage extends ViewRecord
                         ->send();
                 }),
             DeleteAction::make(),
+            Action::make('print')
+                ->label('Print')
+                ->icon(Heroicon::OutlinedPrinter)
+                ->color('gray')
+                ->url(fn () => route('messages.print', $this->record), shouldOpenInNewTab: true),
         ];
     }
 }
