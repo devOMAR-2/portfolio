@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__laravel-boost__search-docs",
+      "WebFetch(domain:filamentphp.com)",
+      "Bash(composer show:*)",
+      "Bash(php artisan make:migration:*)",
+      "Bash(/c/Users/omara/AppData/Local/Programs/Herd/resources/bin/php artisan make:migration add_status_to_messages_table --no-interaction)",
+      "Bash(where:*)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan make:migration add_status_to_messages_table --no-interaction)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan make:filament-resource Project --generate --soft-deletes --view --no-interaction)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan make:filament-resource Message --generate --view --no-interaction)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan migrate --no-interaction)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan make:test --pest Filament/ProjectResourceTest --no-interaction)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan make:test --pest Filament/MessageResourceTest --no-interaction)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan test --compact --filter=ProjectResourceTest)",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" artisan test --compact --filter=\"can render the list page\")",
+      "Bash(\"C:/Users/omara/.config/herd/bin/php.bat\" -r \"echo class_exists\\(''Livewire\\\\Livewire''\\) ? ''Livewire exists'' : ''Livewire not found'';\")",
+      "Bash(php artisan test:*)",
+      "Bash(\"C:\\\\Users\\\\omara\\\\AppData\\\\Local\\\\Programs\\\\Herd\\\\resources\\\\bin\\\\php\\\\8.4.2\\\\php.exe\" artisan test --filter=ProjectResourceTest --compact)",
+      "Bash(\"C:\\\\Program Files\\\\Herd\\\\resources\\\\bin\\\\php84\\\\php.exe\" artisan test --filter=ProjectResourceTest --compact)",
+      "Bash(herd php artisan test:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "laravel-boost",
+    "herd"
+  ]
+}
