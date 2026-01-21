@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('company')->nullable();
             $table->string('phone');
             $table->text('message');
+            $table->string('status')->default('unread');
             $table->timestamps();
         });
     }

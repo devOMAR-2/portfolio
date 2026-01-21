@@ -19,7 +19,9 @@
       "Bash(php artisan test:*)",
       "Bash(\"C:\\\\Users\\\\omara\\\\AppData\\\\Local\\\\Programs\\\\Herd\\\\resources\\\\bin\\\\php\\\\8.4.2\\\\php.exe\" artisan test --filter=ProjectResourceTest --compact)",
       "Bash(\"C:\\\\Program Files\\\\Herd\\\\resources\\\\bin\\\\php84\\\\php.exe\" artisan test --filter=ProjectResourceTest --compact)",
-      "Bash(herd php artisan test:*)"
+      "Bash(herd php artisan test:*)",
+      "Bash(composer dump-autoload:*)",
+      "Bash(php artisan:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
