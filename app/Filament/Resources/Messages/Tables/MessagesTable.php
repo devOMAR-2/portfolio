@@ -56,6 +56,7 @@ class MessagesTable
                     ->label('Received within'),
                 SelectFilter::make('status')
                     ->options(MessageStatus::class)
+                    ->native(false)
                     ->multiple(),
             ])
             ->recordActions([

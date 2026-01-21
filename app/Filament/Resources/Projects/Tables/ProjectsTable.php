@@ -21,35 +21,39 @@ class ProjectsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->sortable(),
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable()
                     ->limit(50),
                 IconColumn::make('is_active')
+                    ->label('Active')
+                    ->sortable()
                     ->boolean(),
                 TextColumn::make('tags.name')
                     ->badge()
                     ->separator(',')
                     ->limitList(3),
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->dateTime('l M d, Y - h:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->dateTime('l M d, Y - h:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 TernaryFilter::make('is_active')
+                    ->native(false)
                     ->label('Active'),
                 SelectFilter::make('tags')
+                    ->native(false)
                     ->relationship('tags', 'name')
                     ->multiple()
+                    ->searchable()
                     ->preload(),
-                TrashedFilter::make(),
+                TrashedFilter::make()
+                    ->native(false),
             ])
             ->recordActions([
                 ViewAction::make(),

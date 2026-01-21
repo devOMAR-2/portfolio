@@ -30,11 +30,10 @@ class Project extends Model implements HasMedia
         'is_active' => 'boolean',
     ];
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaCollections(): void
     {
         $this
-            ->addMediaConversion('thumbnails')
-            ->nonQueued()
+            ->addMediaCollection('thumbnails')
             ->useFallbackUrl(asset('images/placeholder.jpg'))
             ->useFallbackPath(public_path('images/placeholder.jpg'));
     }

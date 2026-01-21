@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources\Projects\Schemas;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Spatie\Tags\Tag;
@@ -25,29 +24,19 @@ class ProjectForm
                             ->required()
                             ->maxLength(255)
                             ->columnSpan(1),
-                        Toggle::make('is_active')
-                            ->default(true)
+                        ToggleButtons::make('is_active')
+                            ->boolean()
+                            ->grouped()
+                            ->inline(true)
                             ->columnSpan(1),
-                        RichEditor::make('description')
+                        TextInput::make('description')
                             ->required()
-                            ->toolbarButtons([
-                                'bold',
-                                'italic',
-                                'underline',
-                                'strike',
-                                'link',
-                                'bulletList',
-                                'orderedList',
-                                'h2',
-                                'h3',
-                                'blockquote',
-                                'codeBlock',
-                            ])
+                            ->autocapitalize('words')
                             ->columnSpanFull(),
                     ]),
                 Section::make('Media & Tags')
                     ->schema([
-                        FileUpload::make('thumbnail')
+                        SpatieMediaLibraryFileUpload::make('thumbnail')
                             ->label('Thumbnail Image')
                             ->image()
                             ->disk('public')
@@ -55,8 +44,9 @@ class ProjectForm
                             ->visibility('public')
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('16:9')
-                            ->imageResizeTargetWidth('1920')
-                            ->imageResizeTargetHeight('1080')
+                            ->imageResizeTargetWidth(1920)
+                            ->imageResizeTargetHeight(1080)
+                            ->collection('thumbnails')
                             ->maxSize(5120),
                         TagsInput::make('tags')
                             ->suggestions(fn (): array => Tag::all()->pluck('name')->toArray()),
