@@ -33,7 +33,9 @@
       "Bash(composer require:*)",
       "mcp__playwright__browser_network_requests",
       "mcp__playwright__browser_wait_for",
-      "mcp__playwright__browser_console_messages"
+      "mcp__playwright__browser_console_messages",
+      "Bash(curl:*)",
+      "mcp__laravel-boost__last-error"
     ]
   },
   "enableAllProjectMcpServers": true,
