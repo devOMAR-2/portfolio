@@ -38,6 +38,61 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
     <!-- Template Styles End -->
 
+    <!-- Flash Message Styles -->
+    <style>
+      .form__flash {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        animation: slideDown 0.3s ease-out;
+      }
+      .form__flash--success {
+        background: rgba(34, 197, 94, 0.15);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        color: #22c55e;
+      }
+      .form__flash--error {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #ef4444;
+      }
+      .form__flash i {
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+      .form__flash .flash__text {
+        flex: 1;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .form__flash .flash__close {
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        padding: 4px;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        flex-shrink: 0;
+      }
+      .form__flash .flash__close:hover {
+        opacity: 1;
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+
     <!-- Custom Browser Color Start -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#dcdce7">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111111">
@@ -719,21 +774,22 @@
           <div class="content__block grid-block block-grid-large">
             <div class="form-container">
 
-              <!-- Reply Messages Start -->
-              <div class="form__reply centered text-center" style="display: none;">
-                <i class="ph-bold ph-smiley reply__icon"></i>
-                <p class="reply__title">Done!</p>
-                <span class="reply__text">Thanks for your message. I'll get back as soon as possible.</span>
+              <!-- Flash Messages Start -->
+              <div class="form__flash form__flash--success" style="display: none;">
+                <i class="ph-bold ph-check-circle"></i>
+                <span class="flash__text">Thanks for your message. I'll get back as soon as possible.</span>
+                <button type="button" class="flash__close" aria-label="Close">
+                  <i class="ph-bold ph-x"></i>
+                </button>
               </div>
-              <!-- Reply Messages End -->
-
-              <!-- Error Messages Start -->
-              <div class="form__error centered text-center" style="display: none;">
-                <i class="ph-bold ph-warning reply__icon"></i>
-                <p class="reply__title">Oops!</p>
-                <span class="reply__text error-message">Something went wrong. Please try again.</span>
+              <div class="form__flash form__flash--error" style="display: none;">
+                <i class="ph-bold ph-warning-circle"></i>
+                <span class="flash__text error-message">Something went wrong. Please try again.</span>
+                <button type="button" class="flash__close" aria-label="Close">
+                  <i class="ph-bold ph-x"></i>
+                </button>
               </div>
-              <!-- Error Messages End -->
+              <!-- Flash Messages End -->
 
               <!-- Contact Form Start -->
               <form class="form contact-form" id="contact-form">
@@ -978,15 +1034,43 @@
       document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
-        const replyMessage = document.querySelector('.form__reply');
-        const errorMessage = document.querySelector('.form__error');
+        const successFlash = document.querySelector('.form__flash--success');
+        const errorFlash = document.querySelector('.form__flash--error');
+
+        // Close button handlers for flash messages
+        document.querySelectorAll('.flash__close').forEach(btn => {
+          btn.addEventListener('click', function() {
+            this.closest('.form__flash').style.display = 'none';
+          });
+        });
+
+        function showFlash(element, message, autoHide = true) {
+          // Hide any existing flash messages
+          successFlash.style.display = 'none';
+          errorFlash.style.display = 'none';
+
+          // Update message and show
+          element.querySelector('.flash__text').textContent = message;
+          element.style.display = 'flex';
+
+          // Scroll to flash message
+          element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+          // Auto-hide after 5 seconds
+          if (autoHide) {
+            setTimeout(() => {
+              element.style.display = 'none';
+            }, 5000);
+          }
+        }
 
         form.addEventListener('submit', async function(e) {
           e.preventDefault();
 
           // Clear previous errors
           document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
-          errorMessage.style.display = 'none';
+          successFlash.style.display = 'none';
+          errorFlash.style.display = 'none';
 
           // Disable submit button
           submitBtn.disabled = true;
@@ -1006,10 +1090,10 @@
             const data = await response.json();
 
             if (response.ok && data.success) {
-              // Show success message
-              form.style.display = 'none';
-              replyMessage.style.display = 'block';
-              replyMessage.querySelector('.reply__text').textContent = data.message;
+              // Clear the form
+              form.reset();
+              // Show success flash message
+              showFlash(successFlash, data.message || 'Thanks for your message. I\'ll get back as soon as possible.');
             } else if (response.status === 422) {
               // Validation errors
               const errors = data.errors || {};
@@ -1030,8 +1114,7 @@
               throw new Error(data.message || 'Something went wrong');
             }
           } catch (error) {
-            errorMessage.style.display = 'block';
-            errorMessage.querySelector('.error-message').textContent = error.message;
+            showFlash(errorFlash, error.message, false);
           } finally {
             submitBtn.disabled = false;
             submitBtn.querySelector('.btn-caption').textContent = 'Send Message';
