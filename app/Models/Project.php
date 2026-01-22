@@ -34,8 +34,8 @@ class Project extends Model implements HasMedia
     {
         $this
             ->addMediaCollection('projects')
-            ->useFallbackUrl(asset('images/placeholder.png'))
-            ->useFallbackPath(public_path('images/placeholder.png'));
+            ->useFallbackUrl(asset('img/placeholder.png'))
+            ->useFallbackPath(public_path('img/placeholder.png'));
     }
 
     public function registerMediaConversions(?Media $media = null): void

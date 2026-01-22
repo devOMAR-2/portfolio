@@ -1,14 +1,4 @@
 // ------------------------------------------------
-// Project Name: Braxton - Personal Portfolio & Resume HTML Template
-// Project Description: Show yourself brightly with Braxton - unique and creative portfolio and resume template!
-// Tags: mix_design, resume, portfolio, personal page, cv, template, one page, responsive, html5, css3, creative, clean
-// Version: 1.0.1
-// Build Date: March 2024
-// Last Update: April 2025
-// This product is available exclusively on Themeforest
-// Author: mix_design
-// Author URI: https://themeforest.net/user/mix_design
-// File name: app.js
 // ------------------------------------------------
 
 // ------------------------------------------------
@@ -40,40 +30,6 @@ $(function() {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // --------------------------------------------- //
-  // Loader & Loading Animation Start
-  // --------------------------------------------- //
-  const content = document.querySelector('body');
-  const imgLoad = imagesLoaded(content);
-
-  imgLoad.on('done', instance => {
-
-    document.getElementById("loaderContent").classList.add("fade-out");
-    setTimeout(() => {
-      document.getElementById("loader").classList.add("loaded");
-    }, 300);
-
-    gsap.set(".animate-headline", {y: 50, opacity: 0});
-    ScrollTrigger.batch(".animate-headline", {
-      interval: 0.1,
-      batchMax: 4,
-      duration: 6,
-      onEnter: batch => gsap.to(batch, {
-        opacity: 1, 
-        y: 0,
-        ease: 'sine',
-        stagger: {each: 0.15, grid: [1, 4]}, 
-        overwrite: true
-      }),
-      onLeave: batch => gsap.set(batch, {opacity: 1, y: 0, overwrite: true}),
-      onEnterBack: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, overwrite: true}),
-      onLeaveBack: batch => gsap.set(batch, {opacity: 0, y: 50, overwrite: true})
-    });
-
-  });
-  // --------------------------------------------- //
-  // Loader & Loading Animation End
-  // --------------------------------------------- //
 
   // --------------------------------------------- //
   // Bootstrap Scroll Spy Plugin Settings Start
@@ -303,31 +259,6 @@ $(function() {
   // --------------------------------------------- //
 
   // --------------------------------------------- //
-  // Contact Form Start
-  // --------------------------------------------- //
-  $("#contact-form").submit(function() { //Change
-		var th = $(this);
-		$.ajax({
-			type: "POST",
-			url: "mail.php", //Change
-			data: th.serialize()
-		}).done(function() {
-      $('.contact').find('.form').addClass('is-hidden');
-      $('.contact').find('.form__reply').addClass('is-visible');
-			setTimeout(function() {
-				// Done Functions
-        $('.contact').find('.form__reply').removeClass('is-visible');
-        $('.contact').find('.form').delay(300).removeClass('is-hidden');
-				th.trigger("reset");
-			}, 5000);
-		});
-		return false;
-	});
-  // --------------------------------------------- //
-  // Contact Form End
-  // --------------------------------------------- //
-
-  // --------------------------------------------- //
   // Modernizr SVG Fallback Start
   // --------------------------------------------- //
   if(!Modernizr.svg) {
@@ -383,9 +314,13 @@ $(function() {
   // PhotoSwipe Gallery Images Replace Start
   // --------------------------------------------- //
   $('.gallery__link').each(function(){
-    $(this)
-    .append('<div class="picture"></div>')
-    .children('.picture').css({'background-image': 'url('+ $(this).attr('data-image') +')'});
+    var imageUrl = $(this).attr('data-image');
+    // Sanitize URL to prevent CSS injection
+    if (imageUrl && /^(https?:\/\/|\/|data:image\/)/.test(imageUrl)) {
+      $(this)
+      .append('<div class="picture"></div>')
+      .children('.picture').css({'background-image': 'url("' + encodeURI(imageUrl).replace(/"/g, '%22').replace(/'/g, '%27') + '")'});
+    }
   });
   // --------------------------------------------- //
   // PhotoSwipe Gallery Images Replace End
