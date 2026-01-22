@@ -44,16 +44,15 @@ class ProjectForm
                             ->directory('projects')
                             ->visibility('public')
                             ->imageResizeMode('cover')
-                            ->imageCropAspectRatio('16:9')
-                            ->imageResizeTargetWidth(1920)
-                            ->imageResizeTargetHeight(1080)
+                            ->imageCropAspectRatio('1:1')
                             ->imageEditor()
                             ->downloadable()
                             ->deletable()
                             ->openable()
                             ->previewable()
                             ->pasteable()
-                            ->collection('projects'),
+                            ->collection('projects')
+                            ->conversion('thumb'),
                         TagsInput::make('tags')
                             ->suggestions(fn (): array => Tag::all()->pluck('name')->toArray()),
                     ]),

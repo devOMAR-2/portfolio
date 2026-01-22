@@ -271,12 +271,12 @@
 
                 @forelse($projects as $project)
                 @php
-                    $thumbnail = $project->getFirstMediaUrl('projects') ?: 'https://dummyimage.com/800x800/3c3c3c/636363';
-                    $fullImage = $project->getFirstMediaUrl('projects') ?: 'https://dummyimage.com/1400x1400/3c3c3c/636363';
+                    $thumbnail = $project->getFirstMediaUrl('projects', 'thumb') ?: 'https://dummyimage.com/800x800/3c3c3c/636363';
+                    $galleryImage = $project->getFirstMediaUrl('projects', 'gallery') ?: 'https://dummyimage.com/1400x1400/3c3c3c/636363';
                 @endphp
                 <!-- Works Gallery Single Item Start -->
                 <figure class="col-12 col-md-6 gallery__item grid-item animate-card-2" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                  <a href="{{ $fullImage }}" data-image="{{ $thumbnail }}" class="gallery__link" itemprop="contentUrl" data-size="1400x1400">
+                  <a href="{{ $galleryImage }}" data-image="{{ $thumbnail }}" class="gallery__link" itemprop="contentUrl" data-size="1400x1400">
                     <img src="{{ $thumbnail }}" class="gallery__image" itemprop="thumbnail" alt="{{ $project->title }}">
                   </a>
                   <figcaption class="gallery__descr" itemprop="caption description">

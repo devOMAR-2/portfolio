@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Tags\HasTags;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
+use Spatie\Tags\HasTags;
 
 class Project extends Model implements HasMedia
 {
@@ -38,8 +38,23 @@ class Project extends Model implements HasMedia
             ->useFallbackPath(public_path('images/placeholder.png'));
     }
 
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(800)
+            ->height(800)
+            ->sharpen(10)
+            ->nonQueued();
+
+        $this->addMediaConversion('gallery')
+            ->width(1400)
+            ->height(1400)
+            ->sharpen(10)
+            ->nonQueued();
+    }
+
     public function scopeActive(Builder $query)
     {
-        return $query->where("is_active", true);
+        return $query->where('is_active', true);
     }
 }
