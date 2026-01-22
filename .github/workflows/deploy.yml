@@ -31,7 +31,7 @@ jobs:
           envs: FILAMENT_USERNAME,FILAMENT_LICENSE_KEY,GITHUB_TOKEN
           script: |
             set -e
-            cd /var/www/devomar
+            cd ~/htdocs/devomar.me
 
             echo "Starting deployment..."
 
@@ -45,25 +45,22 @@ jobs:
             # Configure Filament auth for private packages
             composer config http-basic.packages.filamentphp.com "${FILAMENT_USERNAME}" "${FILAMENT_LICENSE_KEY}"
 
-            # Install dependencies
-            composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+            # Install dependencies (use PHP 8.4 explicitly)
+            /usr/bin/php8.4 /usr/local/bin/composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
             # Install frontend dependencies and build
             npm ci
             npm run build
 
             # Run migrations
-            php artisan migrate --force
+            /usr/bin/php8.4 artisan migrate --force
 
             # Clear and cache
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            php artisan icons:cache
-            php artisan filament:cache-components
-
-            # Restart queue workers if using supervisor
-            sudo supervisorctl restart devomar-worker:* 2>/dev/null || true
+            /usr/bin/php8.4 artisan config:cache
+            /usr/bin/php8.4 artisan route:cache
+            /usr/bin/php8.4 artisan view:cache
+            /usr/bin/php8.4 artisan icons:cache
+            /usr/bin/php8.4 artisan filament:cache-components
 
             # Clean up credentials
             rm -f ~/.git-credentials
