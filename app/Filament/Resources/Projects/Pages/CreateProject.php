@@ -35,7 +35,7 @@ class CreateProject extends CreateRecord
             $thumbnails = is_array($formData['thumbnail']) ? $formData['thumbnail'] : [$formData['thumbnail']];
             foreach ($thumbnails as $thumbnail) {
                 $this->record
-                    ->addMedia(storage_path('app/public/' . $thumbnail))
+                    ->addMedia(storage_path('app/public/'.$thumbnail))
                     ->toMediaCollection('thumbnails');
             }
         }

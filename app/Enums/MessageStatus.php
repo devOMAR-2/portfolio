@@ -6,7 +6,7 @@ use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 
-enum MessageStatus: string implements HasLabel, HasColor, HasIcon
+enum MessageStatus: string implements HasColor, HasIcon, HasLabel
 {
     case Unread = 'unread';
     case Seen = 'seen';

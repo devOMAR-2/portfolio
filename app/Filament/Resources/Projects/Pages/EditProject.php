@@ -65,9 +65,9 @@ class EditProject extends EditRecord
 
             $thumbnails = is_array($formData['thumbnail']) ? $formData['thumbnail'] : [$formData['thumbnail']];
             foreach ($thumbnails as $thumbnail) {
-                if (file_exists(storage_path('app/public/' . $thumbnail))) {
+                if (file_exists(storage_path('app/public/'.$thumbnail))) {
                     $this->record
-                        ->addMedia(storage_path('app/public/' . $thumbnail))
+                        ->addMedia(storage_path('app/public/'.$thumbnail))
                         ->toMediaCollection('thumbnails');
                 }
             }
