@@ -36,7 +36,11 @@
       "mcp__playwright__browser_console_messages",
       "Bash(curl:*)",
       "mcp__laravel-boost__last-error",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_tabs",
+      "mcp__playwright__browser_press_key"
     ]
   },
   "enableAllProjectMcpServers": true,

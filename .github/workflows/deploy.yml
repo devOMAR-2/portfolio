@@ -1,0 +1,71 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Laravel"]
+    types:
+      - completed
+    branches: [main]
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          FILAMENT_USERNAME: ${{ secrets.FILAMENT_USERNAME }}
+          FILAMENT_LICENSE_KEY: ${{ secrets.FILAMENT_LICENSE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          envs: FILAMENT_USERNAME,FILAMENT_LICENSE_KEY,GITHUB_TOKEN
+          script: |
+            set -e
+            cd /var/www/devomar
+
+            echo "Starting deployment..."
+
+            # Configure git to use token for private repo
+            git config credential.helper store
+            echo "https://x-access-token:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
+
+            # Pull latest changes
+            git pull origin main
+
+            # Configure Filament auth for private packages
+            composer config http-basic.packages.filamentphp.com "${FILAMENT_USERNAME}" "${FILAMENT_LICENSE_KEY}"
+
+            # Install dependencies
+            composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+
+            # Install frontend dependencies and build
+            npm ci
+            npm run build
+
+            # Run migrations
+            php artisan migrate --force
+
+            # Clear and cache
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan icons:cache
+            php artisan filament:cache-components
+
+            # Restart queue workers if using supervisor
+            sudo supervisorctl restart devomar-worker:* 2>/dev/null || true
+
+            # Clean up credentials
+            rm -f ~/.git-credentials
+
+            echo "Deployment completed successfully!"
