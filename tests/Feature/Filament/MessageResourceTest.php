@@ -12,7 +12,7 @@ use Livewire\Livewire;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->user = User::factory()->create();
+    $this->user = User::factory()->admin()->create();
 });
 
 describe('authorization', function () {

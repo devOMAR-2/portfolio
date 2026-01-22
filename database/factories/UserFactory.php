@@ -41,4 +41,15 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    /**
+     * Indicate that the user can access the admin panel.
+     */
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'email' => fake()->unique()->userName().'@devomar.me',
+            'email_verified_at' => now(),
+        ]);
+    }
 }
