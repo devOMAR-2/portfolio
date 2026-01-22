@@ -55,7 +55,6 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
 
     public function canAccessPanel(Panel $panel): bool
     {
-        // TODO: Implement proper access control
-        return true;
+        return str_ends_with($this->email, '@devomar.me') && $this->hasVerifiedEmail();
     }
 }
