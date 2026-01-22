@@ -7,7 +7,7 @@
     <title>Omar Al-Farraj | Software Engineer in Riyadh, Saudi Arabia</title>
 
     <meta name="description"
-        content="Omar Al-Farraj - Software Engineer with 7+ years of experience. Specializing in Laravel, Filament, and mobile app development. Based in Riyadh, Saudi Arabia. Available for freelance projects.">
+        content="Omar Al-Farraj - Certified Senior Laravel Developer with 7+ years of experience. Specializing in Laravel, Filament, and mobile app development. Based in Riyadh, Saudi Arabia. Available for freelance projects.">
     <meta name="keywords"
         content="omar al-farraj, software engineer, laravel developer saudi arabia, full-stack developer riyadh, freelance software engineer, php developer, filament, mobile app development, web development">
     <meta name="author" content="Omar Al-Farraj">
@@ -18,12 +18,9 @@
 
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
 
-    <!-- Template Styles Start -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
-    <!-- Template Styles End -->
 
-    <!-- Flash Message Styles -->
     <style>
         .form__flash {
             display: flex;
@@ -86,11 +83,9 @@
         }
     </style>
 
-    <!-- Custom Browser Color Start -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#021a8b">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#021a8b">
     <meta name="msapplication-navbutton-color" content="#021a8b">
-    <!-- Custom Browser Color End -->
 </head>
 
 <body>
@@ -170,9 +165,14 @@
             </div>
             <!-- data caption #1 -->
             <div class="avatar__block">
-                <h6>
-                    <small class="top">Specialization:</small>
-                    Software Engineer<br>Laravel & Mobile Apps
+                <h6 style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>
+                        <small class="top">Specialization:</small>
+                        Certified Senior<br>Laravel Developer
+                    </span>
+                    <a href="https://verifier.certificationforlaravel.org/03fd5c30-5cd6-4364-882c-89ef53524570" target="_blank" rel="noopener" title="Verified Laravel Certification">
+                        <img src="{{ asset('img/senior-laravel-developer-badge.png') }}" alt="Certified Senior Laravel Developer Badge" style="width: 45px; height: auto;">
+                    </a>
                 </h6>
             </div>
             <!-- data caption #2 -->
@@ -197,6 +197,14 @@
                         <li class="socials-square__item">
                             <a class="socials-square__link btn" href="https://x.com/devomar_" target="_blank"><i
                                     class="ph-bold ph-x-logo"></i></a>
+                        </li>
+                        <li class="socials-square__item">
+                            <a class="socials-square__link btn" href="https://instagram.com/devomar.me" target="_blank"><i
+                                    class="ph-bold ph-instagram-logo"></i></a>
+                        </li>
+                        <li class="socials-square__item">
+                            <a class="socials-square__link btn" href="mailto:hi@devomar.me" target="_blank"><i
+                                    class="ph-bold ph-envelope"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -299,10 +307,10 @@
                                 @php
                                     $thumbnail =
                                         $project->getFirstMediaUrl('projects', 'thumb') ?:
-                                        'https://dummyimage.com/800x800/3c3c3c/636363';
+                                        'https://dummyimage.com/800x800/021a8b/ffffff';
                                     $galleryImage =
                                         $project->getFirstMediaUrl('projects', 'gallery') ?:
-                                        'https://dummyimage.com/1400x1400/3c3c3c/636363';
+                                        'https://dummyimage.com/1400x1400/021a8b/ffffff';
                                 @endphp
                                 <!-- Works Gallery Single Item Start -->
                                 <figure class="col-12 col-md-6 gallery__item grid-item animate-card-2"
@@ -369,14 +377,14 @@
                         <!-- achievements single item -->
                         <div class="achievements__item d-flex flex-column grid-item animate-card-3">
                             <div class="achievements__card">
-                                <p class="achievements__number">50+</p>
+                                <p class="achievements__number">20+</p>
                                 <p class="achievements__descr">Projects completed</p>
                             </div>
                         </div>
                         <!-- achievements single item -->
                         <div class="achievements__item d-flex flex-column grid-item animate-card-3">
                             <div class="achievements__card">
-                                <p class="achievements__number">30+</p>
+                                <p class="achievements__number">10+</p>
                                 <p class="achievements__descr">Happy clients</p>
                             </div>
                         </div>
@@ -392,19 +400,15 @@
                             <!-- About Me Description Start -->
                             <div class="col-12 col-xl-8 grid-item about-descr">
                                 <p class="about-descr__text animate-in-up">
-                                    Hey there! I'm Omar, a Software Engineer based in Riyadh with over 7 years of
-                                    experience
-                                    crafting web and mobile applications. I enjoy building things that make a
-                                    difference,
-                                    whether it's a sleek admin panel, a robust API, or a mobile app that users love.
+                                    Hey there! I'm Omar, a Certified Senior Laravel Developer based in Riyadh with over 7 years of
+                                    experience crafting web and mobile applications. I enjoy building things that make a
+                                    difference, whether it's a sleek admin panel, a robust API, or a mobile app that users love.
                                 </p>
                                 <p class="about-descr__text animate-in-up">
-                                    My toolkit includes Laravel, Filament, Livewire, and mobile development
-                                    technologies.
+                                    My toolkit includes Laravel, Filament, Livewire, and mobile development technologies.
                                     I also offer technical consulting and site audits to help businesses optimize their
-                                    digital presence.
-                                    When I'm not coding, you'll find me exploring new technologies or helping fellow
-                                    developers grow.
+                                    digital presence. When I'm not coding, you'll find me exploring new technologies or
+                                    helping fellow developers grow.
                                 </p>
                                 <div class="btn-group about-descr__btnholder animate-in-up">
                                     <a class="btn mobile-vertical btn-default btn-hover btn-hover-accent"
@@ -445,6 +449,16 @@
                                             target="_blank">Riyadh, Saudi Arabia</a>
                                     </h6>
                                 </div>
+                                <div class="about-info__item animate-in-up">
+                                    <h6>
+                                        <small class="top">Certification</small>
+                                        <a href="https://verifier.certificationforlaravel.org/03fd5c30-5cd6-4364-882c-89ef53524570" target="_blank" rel="noopener">
+                                            <img src="{{ asset('img/senior-laravel-developer-badge.png') }}"
+                                                alt="Certified Senior Laravel Developer Badge"
+                                                style="max-width: 100px; height: auto; margin-top: 8px;">
+                                        </a>
+                                    </h6>
+                                </div>
                             </div>
                             <!-- About Me Information End -->
 
@@ -471,7 +485,7 @@
                                             architectures, and server-side applications with Laravel.</p>
                                     </div>
                                     <div class="cards__image d-flex animate-in-up">
-                                        <img src="https://dummyimage.com/1200x900/3d5a80/ffffff&text=Backend"
+                                        <img src="{{ asset('img/backend.jpg') }}"
                                             alt="Backend Development">
                                     </div>
                                 </div>
@@ -490,7 +504,7 @@
                                             user interfaces with modern frontend technologies.</p>
                                     </div>
                                     <div class="cards__image d-flex animate-in-up">
-                                        <img src="https://dummyimage.com/1200x900/ee6c4d/ffffff&text=Frontend"
+                                        <img src="{{ asset('img/frontend.jpg') }}"
                                             alt="Frontend Development">
                                     </div>
                                 </div>
@@ -508,27 +522,8 @@
                                             and content management systems using Filament.</p>
                                     </div>
                                     <div class="cards__image d-flex">
-                                        <img src="https://dummyimage.com/1200x900/293241/ffffff&text=Admin"
+                                        <img src="{{ asset('img/dashboard.jpg') }}"
                                             alt="Admin Panels">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- services grid cards single item -->
-                            <div class="col-12 col-md-6 cards__item grid-item animate-card-2">
-                                <div class="cards__card d-flex flex-column">
-                                    <div class="cards__descr">
-                                        <h4 class="cards__title animate-in-up">Mobile App<br>Development</h4>
-                                        <div class="cards__tags d-flex flex-wrap animate-in-up">
-                                            <span class="rounded-tag tag-outline">iOS</span>
-                                            <span class="rounded-tag tag-outline">Android</span>
-                                            <span class="rounded-tag tag-outline">Cross-platform</span>
-                                        </div>
-                                        <p class="small cards__text animate-in-up">Building native and cross-platform
-                                            mobile applications that deliver seamless user experiences.</p>
-                                    </div>
-                                    <div class="cards__image d-flex animate-in-up">
-                                        <img src="https://dummyimage.com/1200x900/98c1d9/293241&text=Mobile"
-                                            alt="Mobile App Development">
                                     </div>
                                 </div>
                             </div>
@@ -546,7 +541,7 @@
                                             technical decisions, performance optimization, and best practices.</p>
                                     </div>
                                     <div class="cards__image d-flex animate-in-up">
-                                        <img src="https://dummyimage.com/1200x900/6c757d/ffffff&text=Consulting"
+                                        <img src="{{ asset('img/audit.webp') }}"
                                             alt="Technical Consulting">
                                     </div>
                                 </div>
@@ -597,12 +592,12 @@
                         <!-- education single item -->
                         <div class="row g-0 resume-lines__item animate-in-up">
                             <div class="col-12 col-md-2">
-                                <span class="resume-lines__date animate-in-up">2019 - 2023</span>
+                                <span class="resume-lines__date animate-in-up">2023 - 2025</span>
                             </div>
                             <div class="col-12 col-md-5">
                                 <h5 class="resume-lines__title animate-in-up">Bachelor's in Software Engineering</h5>
                                 <p class="resume-lines__source animate-in-up">
-                                    <span class="text-link-bold">University</span>
+                                    <span class="text-link-bold">TVTC</span>
                                 </p>
                             </div>
                             <div class="col-12 col-md-5">
@@ -613,12 +608,12 @@
                         <!-- education single item -->
                         <div class="row g-0 resume-lines__item animate-in-up">
                             <div class="col-12 col-md-2">
-                                <span class="resume-lines__date animate-in-up">2016 - 2019</span>
+                                <span class="resume-lines__date animate-in-up">2018 - 2020</span>
                             </div>
                             <div class="col-12 col-md-5">
                                 <h5 class="resume-lines__title animate-in-up">Computer Programming Diploma</h5>
                                 <p class="resume-lines__source animate-in-up">
-                                    <span class="text-link-bold">Technical College</span>
+                                    <span class="text-link-bold">IPA</span>
                                 </p>
                             </div>
                             <div class="col-12 col-md-5">
@@ -646,12 +641,12 @@
                         <!-- experience single item -->
                         <div class="row g-0 resume-lines__item animate-in-up">
                             <div class="col-12 col-md-2">
-                                <span class="resume-lines__date animate-in-up">2020 - Present</span>
+                                <span class="resume-lines__date animate-in-up">2021 - Present</span>
                             </div>
                             <div class="col-12 col-md-5">
                                 <h5 class="resume-lines__title animate-in-up">Software Engineer</h5>
                                 <p class="resume-lines__source animate-in-up">
-                                    <span class="text-link-bold">Full-time Employment</span>
+                                    <span class="text-link-bold">SDAIA</span>
                                 </p>
                             </div>
                             <div class="col-12 col-md-5">
@@ -662,7 +657,7 @@
                         <!-- experience single item -->
                         <div class="row g-0 resume-lines__item animate-in-up">
                             <div class="col-12 col-md-2">
-                                <span class="resume-lines__date animate-in-up">2017 - Present</span>
+                                <span class="resume-lines__date animate-in-up">2020 - Present</span>
                             </div>
                             <div class="col-12 col-md-5">
                                 <h5 class="resume-lines__title animate-in-up">Freelance Developer</h5>
@@ -704,7 +699,7 @@
                         <!-- tools single item -->
                         <div class="tools-cards__item d-flex grid-item-s animate-card-5">
                             <div class="tools-cards__card">
-                                <i class="ph-bold ph-file-php tools-cards__icon animate-in-up"
+                                <i class="ph-bold ph-file-code tools-cards__icon animate-in-up"
                                     style="font-size: 2.5rem;"></i>
                                 <h6 class="tools-cards__caption animate-in-up">PHP</h6>
                             </div>
@@ -712,7 +707,7 @@
                         <!-- tools single item -->
                         <div class="tools-cards__item d-flex grid-item-s animate-card-5">
                             <div class="tools-cards__card">
-                                <i class="ph-bold ph-database tools-cards__icon animate-in-up"
+                                <i class="ph-bold ph-file-sql tools-cards__icon animate-in-up"
                                     style="font-size: 2.5rem;"></i>
                                 <h6 class="tools-cards__caption animate-in-up">MySQL</h6>
                             </div>
@@ -876,6 +871,20 @@
                                 <a class="socials-cards__link" href="https://x.com/devomar_" target="_blank"></a>
                             </div>
                         </div>
+                        <div class="socials-cards__item d-flex grid-item-s animate-card-5">
+                            <div class="socials-cards__card">
+                                <i class="ph-bold ph-instagram-logo"></i>
+                                <a class="socials-cards__link" href="https://instagram.com/devomar.me"
+                                    target="_blank"></a>
+                            </div>
+                        </div>
+                        <div class="socials-cards__item d-flex grid-item-s animate-card-5">
+                            <div class="socials-cards__card">
+                                <i class="ph-bold ph-envelope"></i>
+                                <a class="socials-cards__link" href="mailto:hi@devomar.me"
+                                    target="_blank"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Content Block - Socials Cards End -->
@@ -901,15 +910,15 @@
                             <div class="col-12 col-md-4 contact-lines__data">
                                 <p class="contact-lines__title animate-in-up">Location</p>
                                 <p class="contact-lines__text animate-in-up">
-                                    <a class="text-link-bold" href="https://maps.google.com/?q=Saudi+Arabia"
-                                        target="_blank">Saudi Arabia</a>
+                                    <a class="text-link-bold" href="https://maps.google.com/?q=Riyadh+Saudi+Arabia"
+                                        target="_blank">Riyadh, Saudi Arabia</a>
                                 </p>
                             </div>
                             <!-- data item -->
                             <div class="col-12 col-md-4 contact-lines__data">
                                 <p class="contact-lines__title animate-in-up">Phone</p>
                                 <p class="contact-lines__text animate-in-up">
-                                    <a class="text-link-bold" href="tel:+966500000000">+966 50 000 0000</a>
+                                    <a class="text-link-bold" href="tel:+966535955354">+966 53 595 5354</a>
                                 </p>
                             </div>
                             <!-- data item -->
@@ -917,7 +926,7 @@
                                 <p class="contact-lines__title animate-in-up">Email</p>
                                 <p class="contact-lines__text animate-in-up">
                                     <a class="text-link-bold"
-                                        href="mailto:hi@devomar.me?subject=Hello%20Omar">omar.alfarraj@yahoo.com</a>
+                                        href="mailto:hi@devomar.me?subject=Hello%20Omar">hi@devomar.me</a>
                                 </p>
                             </div>
                         </div>
