@@ -33,9 +33,9 @@ class Project extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this
-            ->addMediaCollection('thumbnails')
-            ->useFallbackUrl(asset('images/placeholder.jpg'))
-            ->useFallbackPath(public_path('images/placeholder.jpg'));
+            ->addMediaCollection('projects')
+            ->useFallbackUrl(asset('images/placeholder.png'))
+            ->useFallbackPath(public_path('images/placeholder.png'));
     }
 
     public function scopeActive(Builder $query)

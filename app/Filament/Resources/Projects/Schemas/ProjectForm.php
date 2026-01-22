@@ -28,6 +28,7 @@ class ProjectForm
                             ->boolean()
                             ->grouped()
                             ->inline(true)
+                            ->default(true)
                             ->columnSpan(1),
                         TextInput::make('description')
                             ->required()
@@ -46,8 +47,13 @@ class ProjectForm
                             ->imageCropAspectRatio('16:9')
                             ->imageResizeTargetWidth(1920)
                             ->imageResizeTargetHeight(1080)
-                            ->collection('thumbnails')
-                            ->maxSize(5120),
+                            ->imageEditor()
+                            ->downloadable()
+                            ->deletable()
+                            ->openable()
+                            ->previewable()
+                            ->pasteable()
+                            ->collection('projects'),
                         TagsInput::make('tags')
                             ->suggestions(fn (): array => Tag::all()->pluck('name')->toArray()),
                     ]),

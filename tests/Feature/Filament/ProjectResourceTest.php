@@ -75,7 +75,7 @@ describe('create page', function () {
             ->fillForm([
                 'title' => $newProject->title,
                 'description' => $newProject->description,
-                'is_active' => $newProject->is_active,
+                'is_active' => (int) $newProject->is_active,
             ])
             ->call('create')
             ->assertHasNoFormErrors();
